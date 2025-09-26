@@ -36,7 +36,8 @@ example : True → True := by
 
 example : False → True := by
   intro h
-  cases h
+  cases h -- quiza mejor usar exfalso y luego exact h o trivial (aunque trivial te lo hace de una)
+  done
 
 example : False → False := by
   intro h
@@ -53,14 +54,30 @@ example : False → P := by
   exact h
 
 example : True → False → True → False → True → False := by
-  sorry
+  intro h1 h2
+  exfalso
+  exact h2
+  done
+
+example : True → False → True → False → True → False := by --mismo que el anterior
+  intro h1 h2 h3 h4 h5
+  exact h2
+  done
 
 example : P → (P → False) → False := by
-  sorry
+  intro hP hPF
+  apply hPF
+  exact hP
+  done
 
 example : (P → False) → P → Q := by
-  sorry
+  intro hPF hP
+  exfalso
+  apply hPF
+  exact hP
+  done
 
+/-
 example : (True → False) → P := by
   intro h1
   have h3 : False := by
@@ -68,3 +85,20 @@ example : (True → False) → P := by
     trivial
   exfalso
   exact h3
+  -- apply h1
+  -- trivial
+  -- done
+  done
+
+  -/
+example : (True → False) → P := by --lo mio
+  intro h1
+  exfalso
+  apply h1
+  trivial
+  done
+example : (True → False) → P := by --tambien vale, trivial te lo hace
+  intro h1
+  exfalso
+  trivial
+  done
