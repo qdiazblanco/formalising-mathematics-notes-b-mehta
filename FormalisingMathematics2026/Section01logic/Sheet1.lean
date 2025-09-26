@@ -142,12 +142,6 @@ example : P → P := by
 /- If we know `P`, and we also know `P → Q`, we can deduce `Q`.
 This is called "Modus Ponens" by logicians. -/
 example : P → (P → Q) → Q := by
-<<<<<<< HEAD:FormalisingMathematics2026/Section01logic/Sheet1.lean
-  sorry
-
-/-- `→` is transitive. That is, if `P → Q` and `Q → R` are true, then
-so is `P → R`. -/
-=======
   intro hP hPQ
   apply hPQ at hP
   exact hP
@@ -161,14 +155,22 @@ so is `P → R`. -/
 
 /- `→` is transitive. That is, if `P → Q` and `Q → R` are true, then
   so is `P → R`. -/
->>>>>>> b52aaf9 (Sheet1 example1 done yay):FormalisingMathematics2025/Section01logic/Sheet1.lean
 example : (P → Q) → (Q → R) → P → R := by
-  sorry
+  intro hPQ hQR hP
+  apply hQR
+  apply hPQ
+  exact hP
+  done
 
 /-- If `h : P → Q → R` with goal `⊢ R` and you `apply h`, you'll get
 two goals! Note that tactics operate on only the first goal. -/
 example : (P → Q → R) → (P → Q) → P → R := by
-  sorry
+  intro hPQR hPQ hP
+  apply hPQR
+  exact hP
+  apply hPQ
+  exact hP
+  done
 
 /-
 Here are some harder puzzles. They won't teach you anything new about
@@ -180,10 +182,24 @@ in this section, where you'll learn some more tactics.
 variable (S T : Prop)
 
 example : (P → R) → (S → Q) → (R → T) → (Q → R) → S → T := by
-  sorry
+  variable (P Q R : Prop)
+
+variable (S T : Prop)
+
+example : (P → R) → (S → Q) → (R → T) → (Q → R) → S → T := by
+  intro hPR hSQ hRT hQR hS
+  apply hRT
+  apply hQR
+  apply hSQ
+  exact hS
+  done
 
 example : (P → Q) → ((P → Q) → P) → Q := by
-  sorry
+  intro hPQ hPQP
+  apply hPQ
+  apply hPQP
+  exact hPQ
+  done
 
 example : ((P → Q) → R) → ((Q → R) → P) → ((R → P) → Q) → P := by
   sorry
