@@ -181,10 +181,8 @@ in this section, where you'll learn some more tactics.
 -/
 variable (S T : Prop)
 
-example : (P → R) → (S → Q) → (R → T) → (Q → R) → S → T := by
-  variable (P Q R : Prop)
+variable (P Q R : Prop)
 
-variable (S T : Prop)
 
 example : (P → R) → (S → Q) → (R → T) → (Q → R) → S → T := by
   intro hPR hSQ hRT hQR hS
@@ -232,4 +230,16 @@ example : (((P → Q) → Q) → Q) → P → Q := by
 example :
     (((P → Q → Q) → (P → Q) → Q) → R) →
       ((((P → P) → Q) → P → P → Q) → R) → (((P → P → Q) → (P → P) → Q) → R) → R := by
+<<<<<<< HEAD:FormalisingMathematics2026/Section01logic/Sheet1.lean
   sorry
+=======
+
+  intro h1 h2 h3
+  apply h2
+  intro h4 h5 h6
+  apply h4
+  intro h7
+  exact h7
+  done
+  -- igual se podria simplificar mas.
+>>>>>>> 05093c6 (ultimo ejercicio hoja 1):FormalisingMathematics2025/Section01logic/Sheet1.lean
