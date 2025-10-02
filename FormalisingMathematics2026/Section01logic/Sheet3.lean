@@ -33,34 +33,74 @@ and the following tactics may also be useful:
 variable (P Q R : Prop)
 
 example : ¬True → False := by
-  sorry
+  intro hnT
+  change True → False at hnT
+  apply hnT
+  trivial
 
 example : False → ¬True := by
-  sorry
+  intro hF
+  by_contra hT
+  exact hF
 
 example : ¬False → True := by
-  sorry
-
-example : True → ¬False := by
-  sorry
+  intro hnF
+  by_contra hnT
+  change True → False at hnT
+  apply hnT
+  trivial
 
 example : False → ¬P := by
-  sorry
+  intro hF
+  exfalso
+  exact hF
+--or
+example : False → ¬P := by
+  intro hF
+  by_contra hP
+  exact hF
 
 example : P → ¬P → False := by
-  sorry
+  intro hP hnP
+  change P → False at hnP
+  apply hnP
+  exact hP
 
 example : P → ¬¬P := by
-  sorry
+  intro hP
+  change ¬P → False
+  intro hnP
+  change P → False at hnP
+  apply hnP
+  exact hP
 
 example : (P → Q) → ¬Q → ¬P := by
-  sorry
+  intro hPQ hnQ
+  change Q → False at hnQ
+  by_contra hP
+  apply hnQ
+  apply hPQ
+  exact hP
 
 example : ¬¬False → False := by
-  sorry
+  intro hnnF
+  change ¬False → False at hnnF
+  apply hnnF
+  by_contra hF
+  exact hF
 
 example : ¬¬P → P := by
-  sorry
+  intro hnnP
+  change ¬ P → False at hnnP
+  by_contra hnP
+  apply hnnP
+  exact hnP
 
 example : (¬Q → ¬P) → P → Q := by
-  sorry
+  intro h1 hP
+  by_contra hnQ
+  apply h1 at hnQ
+  change P → False at hnQ
+  apply hnQ
+  exact hP
+-- I could have used "exact hnQ hP" after apply and nothing else

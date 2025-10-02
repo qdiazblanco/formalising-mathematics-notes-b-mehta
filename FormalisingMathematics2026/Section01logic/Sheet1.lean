@@ -230,9 +230,6 @@ example : (((P → Q) → Q) → Q) → P → Q := by
 example :
     (((P → Q → Q) → (P → Q) → Q) → R) →
       ((((P → P) → Q) → P → P → Q) → R) → (((P → P → Q) → (P → P) → Q) → R) → R := by
-<<<<<<< HEAD:FormalisingMathematics2026/Section01logic/Sheet1.lean
-  sorry
-=======
 
   intro h1 h2 h3
   apply h2
@@ -242,4 +239,3 @@ example :
   exact h7
   done
   -- igual se podria simplificar mas.
->>>>>>> 05093c6 (ultimo ejercicio hoja 1):FormalisingMathematics2025/Section01logic/Sheet1.lean
