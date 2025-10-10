@@ -25,6 +25,7 @@ and also the following two new tactics:
 variable (P Q R S : Prop)
 
 example : P ↔ P := by
+<<<<<<< HEAD:FormalisingMathematics2026/Section01logic/Sheet5.lean
   sorry
 
 example : (P ↔ Q) → (Q ↔ P) := by
@@ -36,6 +37,25 @@ example : (P ↔ Q) ↔ (Q ↔ P) := by
 example : (P ↔ Q) → (Q ↔ R) → (P ↔ R) := by
   sorry
   -- The pattern `rw` then `assumption` is common enough that it can be abbreviated to `rwa`
+=======
+  rfl
+
+example : (P ↔ Q) → (Q ↔ P) := by
+  intro hPQ
+  rw [hPQ]
+
+example : (P ↔ Q) ↔ (Q ↔ P) := by
+  constructor
+  ·intro hPQ
+   rw [hPQ]
+  ·intro hQP
+   rw [hQP]
+
+example : (P ↔ Q) → (Q ↔ R) → (P ↔ R) := by
+  intro hPQ hQR
+  rw [hQR] at hPQ
+  exact hPQ
+>>>>>>> 3b9c308 (media hoja 5, me ha petao el Lean):FormalisingMathematics2025/Section01logic/Sheet5.lean
 
 example : P ∧ Q ↔ Q ∧ P := by
   sorry
