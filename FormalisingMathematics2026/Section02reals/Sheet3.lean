@@ -111,6 +111,14 @@ theorem tendsTo_add_const {a : ℕ → ℝ} {t : ℝ} (c : ℝ) (h : TendsTo a t
   ring_nf
   exact h
 
+--my solution
+theorem tendsTo_add_const' {a : ℕ → ℝ} {t : ℝ} (c : ℝ) (h : TendsTo a t) :
+    TendsTo (fun n => a n + c) (t + c) := by
+  rw[tendsTo_def]
+  simp --it is better to use 'ring_nf' here, see use of non-terminal simp's.
+  rw[tendsTo_def] at h
+  exact h
+
 -- you're not quite ready for this one yet though.
 /-- If `a(n)` tends to `t` then `-a(n)` tends to `-t`.  -/
 example {a : ℕ → ℝ} {t : ℝ} (ha : TendsTo a t) : TendsTo (fun n => -a n) (-t) := by
